@@ -109,4 +109,5 @@
 .app_contacts .webix_list_item.webix_selected .app_contacts_item_remove,
 .app_contacts .webix_list_item:hover .app_contacts_item_remove {
     opacity: 1;
+    align-items: center;
 }

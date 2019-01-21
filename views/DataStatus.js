@@ -1,22 +1,24 @@
 import {JetView} from "webix-jet";
-import {statuses} from "models/statuses";
 export default class DataStatus extends JetView{
+	constructor(app, name , data){
+		super(app, name);
+		this._statusData = data;
+	}
 	config(){
-		return { view:"datatable", 
-
+		return {
+			view:"datatable", 
 			editable: true,
-			id: "statusTbl",
-			autowidth: true,
+			id: "statusView",
+			autoWidth: true,
 			scroll: false,
-			columns:[
-				{ id:"id", header:"Id", width: 200},
-				{ id:"Name", header:"Name", editor: "text", width: 260},
-				{ id:"Icon", header:"Icon", editor: "text", width: 260},
-				{ id:"remove",header: "",
+			columns: [
+				{ id: "Name", header: "Name", editor: "text", fillspace: true},
+				{ id: "Icon", header: "Icon", editor: "text", fillspace: true},
+				{ id: "remove",header: "", width: 50,
 					template: "<span class='btn-remove-status remove mdi mdi-trash-can'></span>"
 				}
 			],
-			onClick:{
+			onClick: {
 				remove(e, id){
 					this.remove(id);
 					return false;
@@ -25,7 +27,7 @@ export default class DataStatus extends JetView{
 		};
 	}
 	ready(view){
-		view.parse(statuses);	
+		view.parse(this._statusData);	
 	}
 }
 

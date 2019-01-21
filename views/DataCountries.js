@@ -1,17 +1,21 @@
 import {JetView} from "webix-jet";
-import {countries} from "models/countries";
 export default class DataCountries extends JetView{
+	constructor(app, name, data){
+		super(app, name),
+		this._countriesData = data;
+	}
 	config(){
 		return { 
 			view:"list",
-			autowidth:true,
+			autowidth: true,
+			autoHeight: true,
+			scroll: false,
 			editable: true,
 			editor: "text",
 			editValue: "Name", template: "#Name#"	
 		};
 	}
 	ready(view){
-		view.parse(countries);
-
+		view.parse(this._countriesData);
 	}
 }
